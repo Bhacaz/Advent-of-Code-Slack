@@ -3,7 +3,6 @@ class CreateLeaderboards < ActiveRecord::Migration[6.0]
     create_table :leaderboards do |t|
       t.integer :leaderboard_id, null: false
       t.string :token, null: false
-      t.string :channel, null: false
 
       t.timestamps
     end

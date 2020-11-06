@@ -10,12 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_012551) do
+ActiveRecord::Schema.define(version: 2020_11_06_003646) do
+
+  create_table "cats", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "leaderboards", force: :cascade do |t|
     t.integer "leaderboard_id", null: false
     t.string "token", null: false
-    t.string "channel", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -38,21 +42,16 @@ ActiveRecord::Schema.define(version: 2020_11_02_012551) do
     t.index ["leaderboard_id"], name: "index_members_on_leaderboard_id"
   end
 
-  create_table "post_contents", force: :cascade do |t|
+  create_table "post_configs", force: :cascade do |t|
     t.integer "leaderboard_id"
+    t.string "channel", null: false
+    t.string "webhook_url", null: false
+    t.integer "interval_trigger", null: false
     t.integer "order_by", null: false
     t.boolean "display_other"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["leaderboard_id"], name: "index_post_contents_on_leaderboard_id"
-  end
-
-  create_table "triggers", force: :cascade do |t|
-    t.integer "leaderboard_id"
-    t.integer "interval_trigger", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["leaderboard_id"], name: "index_triggers_on_leaderboard_id"
+    t.index ["leaderboard_id"], name: "index_post_configs_on_leaderboard_id"
   end
 
 end

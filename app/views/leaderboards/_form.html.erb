@@ -1,0 +1,26 @@
+<%= form_with(model: leaderboard, local: true) do |form| %>
+  <% if leaderboard.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(leaderboard.errors.count, "error") %> prohibited this leaderboard from being saved:</h2>
+
+      <ul>
+        <% leaderboard.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= label_tag(:leaderboard_id, "Leaderboard id") %>
+  The ID of your private Leaderboard. It can be found at the end of the url of your Leaderboard
+  https://adventofcode.com/2019/leaderboard/private/view/XXXX<br>
+  <%= text_field_tag(:leaderboard_id, nil, { required: true }) %>
+
+  <%= label_tag(:token, "Session token") %>
+  A session cookie token from Advent of Code website. It can be find in a request header from the devtool of your browser.<br>
+  <%= password_field_tag(:token, nil, { required: true }) %>
+
+  <div class="actions">
+    <%= form.submit('Add to Slack') %>
+  </div>
+<% end %>

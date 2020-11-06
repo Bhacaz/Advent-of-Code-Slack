@@ -1,0 +1,36 @@
+<%=form_with(model: @post_config, local: true, url: update_post_configs_leaderboards_path(@leaderboard.id)) do |f| %>
+  <% if @post_config && @post_config.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(leaderboard.errors.count, "error") %> prohibited this leaderboard from being saved:</h2>
+
+      <ul>
+        <% leaderboard.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label(:channel, "Channel Slack") %>
+  #<%= f.text_field(:channel, required: true) %>
+
+  <%= f.label(:webhook_url, "Slack webhook url") %>
+  You can create one here: <%= link_to('my.slack.com', 'https://my.slack.com/services/new/incoming-webhook/') %><br>
+  <%= f.url_field(:webhook_url, { required: true }) %>
+
+  <%= f.label(:interval_trigger, "Slack webhook url") %>
+  <%= f.number_field(:interval_trigger, required: true) %>
+
+  <%= f.label(:order_by, "Order post by:") %>
+  <%= f.label(:stars, "Stars", value: 'stars') %>
+  <%= f.radio_button(:order_by, "stars", required: true) %>
+  <%= f.label(:score, "Score", value: 'score') %>
+  <%= f.radio_button(:order_by, "score") %>
+
+  <%= f.label(:display_other, "Display other stat") %>
+  <%= f.check_box(:display_other) %>
+
+  <div class="actions">
+    <%= f.submit('Setup') %>
+  </div>
+<% end %>

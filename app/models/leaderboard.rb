@@ -3,12 +3,9 @@ class Leaderboard < ApplicationRecord
   LEADERBOARD_URL = "https://adventofcode.com/2019/leaderboard/private/view"
 
   has_many :members
-  has_one :post_content
-  has_one :trigger
+  has_one :post_config
 
   validates :leaderboard_id, presence: true
-  validates :channel, presence: true
-  validates :token, presence: true
 
   def fetch_leaderboard_data
     headers = { cookie: "session=#{token}" }
