@@ -1,24 +1,32 @@
-# README
+# Advent of Code Slack
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Post new Advent of Code score of a private leaderboard on Slack.
 
-Things you may want to cover:
+![Slack post](https://user-images.githubusercontent.com/7858787/70275316-ea725880-177b-11ea-88c3-f27eec8afd19.png)
 
-* Ruby version
+## Installation
 
-* System dependencies
+```
+rbenv install 2.7.2
+gem install bundler
+bundle install
+```
 
-* Configuration
+## Init database
 
-* Database creation
+```
+bundle exec rails db:create
+bundle exec rails db:migrate
+```
 
-* Database initialization
+## Run the server
 
-* How to run the test suite
+```
+bundle exec rails server
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Run test suite
 
-* Deployment instructions
-
-* ...
+```
+bundle exec rspec
+```
