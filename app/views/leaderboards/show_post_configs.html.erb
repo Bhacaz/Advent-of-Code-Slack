@@ -1,16 +1,5 @@
 <%=form_with(model: @post_config, local: true, url: update_post_configs_leaderboards_path(@leaderboard.id)) do |f| %>
-  <% if @post_config && @post_config.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(leaderboard.errors.count, "error") %> prohibited this leaderboard from being saved:</h2>
-
-      <ul>
-        <% leaderboard.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <h3>Slack information</h3>
   <%= f.label(:channel, "Channel Slack") %>
   #<%= f.text_field(:channel, required: true) %>
 
@@ -18,8 +7,9 @@
   You can create one here: <%= link_to('my.slack.com', 'https://my.slack.com/services/new/incoming-webhook/') %><br>
   <%= f.url_field(:webhook_url, { required: true }) %>
 
-  <%= f.label(:interval_trigger, "Slack webhook url") %>
-  <%= f.number_field(:interval_trigger, required: true) %>
+  <h3>Trigger config</h3>
+  <%= f.label(:interval_trigger, "Verify new score every") %>
+  <%= f.select(:interval_trigger, @intervals, required: true) %>
 
   <%= f.label(:order_by, "Order post by:") %>
   <%= f.label(:stars, "Stars", value: 'stars') %>
