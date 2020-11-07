@@ -1,6 +1,6 @@
 class LeaderboardDataMock
   MOCK = {"members"=>
-            {"704961"=>
+            {"12341"=>
                {"last_star_ts"=>"1575309957",
                 "completion_day_level"=>
                   {"1"=>
@@ -9,9 +9,9 @@ class LeaderboardDataMock
                 "local_score"=>8,
                 "global_score"=>0,
                 "stars"=>2,
-                "name"=>"Christophe Duchesne-Ashworth",
-                "id"=>"704961"},
-             "706245"=>
+                "name"=>"Alpha",
+                "id"=>"12341"},
+             "12342"=>
                {"stars"=>12,
                 "global_score"=>0,
                 "local_score"=>58,
@@ -34,9 +34,9 @@ class LeaderboardDataMock
                      {"1"=>{"get_star_ts"=>"1575913865"},
                       "2"=>{"get_star_ts"=>"1575915323"}}},
                 "last_star_ts"=>"1576428819",
-                "id"=>"706245",
-                "name"=>"Alexandre Gagnon"},
-             "705303"=>
+                "id"=>"12342",
+                "name"=>"Beta"},
+             "12343"=>
                {"last_star_ts"=>"1576342221",
                 "completion_day_level"=>
                   {"7"=>{"1"=>{"get_star_ts"=>"1575828563"}},
@@ -79,9 +79,9 @@ class LeaderboardDataMock
                 "local_score"=>132,
                 "stars"=>25,
                 "global_score"=>0,
-                "name"=>"Robin Hood",
-                "id"=>"705303"},
-             "705141"=>
+                "name"=>"Charlie",
+                "id"=>"12343"},
+             "12344"=>
                {"stars"=>8,
                 "global_score"=>0,
                 "local_score"=>24,
@@ -99,9 +99,9 @@ class LeaderboardDataMock
                    "1"=>
                      {"1"=>{"get_star_ts"=>"1575340582"},
                       "2"=>{"get_star_ts"=>"1575341659"}}},
-                "id"=>"705141",
-                "name"=>"Luisa Verza"},
-             "704521"=>
+                "id"=>"12344",
+                "name"=>"Delta"},
+             "12340"=>
                {"local_score"=>101,
                 "stars"=>19,
                 "global_score"=>0,
@@ -135,17 +135,17 @@ class LeaderboardDataMock
                       "2"=>{"get_star_ts"=>"1575307451"}},
                    "7"=>{"1"=>{"get_star_ts"=>"1575771065"}}},
                 "last_star_ts"=>"1576257494",
-                "id"=>"704521",
-                "name"=>"dylansteen"},
-             "707676"=>
+                "id"=>"12340",
+                "name"=>"Foxtrot"},
+             "12345"=>
                {"last_star_ts"=>0,
                 "completion_day_level"=>{},
                 "stars"=>0,
                 "global_score"=>0,
                 "local_score"=>0,
-                "name"=>"Jean-Christophe Langevin",
-                "id"=>"707676"}},
-          "owner_id"=>"704521",
+                "name"=>"Golf",
+                "id"=>"12345"}},
+          "owner_id"=>"12340",
           "event"=>"2019"}.to_json
 end
 

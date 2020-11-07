@@ -23,11 +23,11 @@ RSpec.describe MemberScoreParser do
 
     context 'when a member was already saved' do
       it 'doesnt added' do
-        already_created_member = create :member, member_id: 705303, leaderboard: leaderboard, name: nil
+        already_created_member = create :member, member_id: 12340, leaderboard: leaderboard, name: nil
         expect(already_created_member.name).to be_nil
         subject
         already_created_member.reload
-        expect(already_created_member.name).to eq 'Robin Hood'
+        expect(already_created_member.name).to eq 'Foxtrot'
         expect(instance.new_members.size).to eq 5
         expect(instance.new_members).to_not include(already_created_member)
       end
@@ -44,10 +44,10 @@ RSpec.describe MemberScoreParser do
 
       context 'when a member still have the same score' do
         it 'doenst not create a new member_score' do
-          already_created_member = create :member, member_id: 705303, leaderboard: leaderboard, name: nil
-          create :member_score, member: already_created_member, score: 132
+          already_created_member = create :member, member_id: 12340, leaderboard: leaderboard, name: nil
+          create :member_score, member: already_created_member, score: 101
           expect(already_created_member.scores.count).to eq 1
-          expect(already_created_member.scores.first.score).to eq 132
+          expect(already_created_member.scores.first.score).to eq 101
           subject
           already_created_member.reload
           expect(already_created_member.scores.count).to eq 1

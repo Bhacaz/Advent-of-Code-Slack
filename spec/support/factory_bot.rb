@@ -4,7 +4,6 @@ FactoryBot.define do
   factory :leaderboard do
     leaderboard_id { 123 }
     token { 'abc' }
-    channel { 'adven-of-code' }
   end
 
   factory :member do
