@@ -28,6 +28,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'sidekiq'
 gem 'httparty'
+gem 'sidekiq'
 
 group :production do
   # Use sqlite3 as the database for Active Record

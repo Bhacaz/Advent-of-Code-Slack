@@ -19,7 +19,7 @@ class LeaderboardsController < ApplicationController
 
   def show_post_configs
     @leaderboard = Leaderboard.find(params[:id])
-    @post_config = @leaderboard.post_config
+    @post_config = @leaderboard.post_config || PostConfig.new(leaderboard: @leaderboard)
   end
 
   def update_post_configs

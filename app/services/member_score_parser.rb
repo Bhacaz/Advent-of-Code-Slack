@@ -35,4 +35,8 @@ class MemberScoreParser
       end
     end
   end
+
+  def nothing_new?
+    @new_members.empty? && @score_change_members.empty?
+  end
 end

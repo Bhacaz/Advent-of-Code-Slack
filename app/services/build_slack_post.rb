@@ -1,4 +1,4 @@
-class SlackPost
+class BuildSlackPost
 
   ORDER_BY_STARS = { stars: :desc, score: :desc }
   ORDER_BY_SCORE = {score: :desc, stars: :desc}
@@ -44,7 +44,7 @@ class SlackPost
   private
   
   def by_stars?
-    @ordering_by == :stars
+    @ordering_by == 'stars'
   end
 
   def ordering

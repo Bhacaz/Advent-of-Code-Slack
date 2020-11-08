@@ -23,6 +23,7 @@ bundle exec rails db:migrate
 
 ```
 bundle exec rails server
+bin/webpack-dev-server 
 ```
 
 ## Run test suite

@@ -10,12 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_003646) do
-
-  create_table "cats", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2020_11_02_012537) do
 
   create_table "leaderboards", force: :cascade do |t|
     t.integer "leaderboard_id", null: false
@@ -46,7 +41,6 @@ ActiveRecord::Schema.define(version: 2020_11_06_003646) do
     t.integer "leaderboard_id"
     t.string "channel", null: false
     t.string "webhook_url", null: false
-    t.integer "interval_trigger", null: false
     t.integer "order_by", null: false
     t.boolean "display_other"
     t.datetime "created_at", precision: 6, null: false
