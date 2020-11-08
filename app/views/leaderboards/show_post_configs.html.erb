@@ -7,10 +7,6 @@
   You can create one here: <%= link_to('my.slack.com', 'https://my.slack.com/services/new/incoming-webhook/') %><br>
   <%= f.url_field(:webhook_url, { required: true }) %>
 
-  <h3>Trigger config</h3>
-  <%= f.label(:interval_trigger, "Verify new score every") %>
-  <%= f.select(:interval_trigger, @intervals, required: true) %>
-
   <%= f.label(:order_by, "Order post by:") %>
   <%= f.label(:stars, "Stars", value: 'stars') %>
   <%= f.radio_button(:order_by, "stars", required: true) %>
