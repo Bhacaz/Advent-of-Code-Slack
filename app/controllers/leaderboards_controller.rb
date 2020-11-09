@@ -8,11 +8,16 @@ class LeaderboardsController < ApplicationController
   end
 
   def create
-    @leaderboard = Leaderboard.find_or_create_by!(leaderboard_params)
-    redirect_to show_post_configs_leaderboards_path(@leaderboard.leaderboard_id)
+    @leaderboard = Leaderboard.find_or_initialize_by(leaderboard_params)
+    if @leaderboard.new_record?
+      @leaderboard.save!
+      redirect_to edit_post_configs_leaderboards_path(@leaderboard.leaderboard_id)
+    else
+      redirect_to show_post_configs_leaderboards_path(@leaderboard.leaderboard_id)
+    end
   end
 
-  def show_post_configs
+  def edit_post_configs
     @leaderboard = Leaderboard.find_by(leaderboard_id: params[:id])
     @post_config = @leaderboard.post_config || PostConfig.new(leaderboard: @leaderboard)
   end
@@ -24,6 +29,11 @@ class LeaderboardsController < ApplicationController
     post_config.assign_attributes(post_configs_params)
     post_config.save!
     redirect_to show_post_configs_leaderboards_path(params[:id])
+  end
+
+  def show_post_configs
+    @leaderboard = Leaderboard.find_by(leaderboard_id: params[:id])
+    @post_config = @leaderboard.post_config
   end
 
   private

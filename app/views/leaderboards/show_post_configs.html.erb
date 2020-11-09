@@ -1,23 +1,9 @@
-<%=form_with(model: @post_config, local: true, url: update_post_configs_leaderboards_path(@leaderboard.leaderboard_id)) do |f| %>
-  <h3>Slack information</h3>
-  <%= f.label(:channel, "Channel Slack") %>
-  #<%= f.text_field(:channel, required: true) %>
+<h3>Slack information</h3>
 
-  <%= f.label(:webhook_url, "Slack webhook url") %>
-  You can create one here: <%= link_to('my.slack.com', 'https://my.slack.com/services/new/incoming-webhook/') %><br>
-  <%= f.url_field(:webhook_url, { required: true }) %>
+<p>Channel: #<%= @post_config.channel %></p>
+<p>Webhook url: <%= @post_config.webhook_url %></p>
+<p>Order by: <%= @post_config.order_by %></p>
+<p>Display other: <%= @post_config.display_other %></p>
 
-  <%= f.label(:order_by, "Order post by:") %>
-  <%= f.label(:stars, "Stars", value: 'stars') %>
-  <%= f.radio_button(:order_by, "stars", required: true) %>
-  <%= f.label(:score, "Score", value: 'score') %>
-  <%= f.radio_button(:order_by, "score") %>
-
-  <%= f.label(:display_other, "Display other stat") %>
-  <%= f.check_box(:display_other) %>
-
-  <div class="actions">
-    <%= f.submit('Setup') %>
-  </div>
-  <%= button_to "Send test", slack_test_path(@leaderboard.leaderboard_id), method: :post %>
-<% end %>
+<%= button_to "Edit", edit_post_configs_leaderboards_path(@leaderboard.leaderboard_id), method: :get %>
+<%= button_to "Send test", slack_test_path(@leaderboard.leaderboard_id), method: :post %>
