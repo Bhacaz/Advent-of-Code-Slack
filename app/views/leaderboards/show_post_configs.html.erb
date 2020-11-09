@@ -1,4 +1,4 @@
-<%=form_with(model: @post_config, local: true, url: update_post_configs_leaderboards_path(@leaderboard.id)) do |f| %>
+<%=form_with(model: @post_config, local: true, url: update_post_configs_leaderboards_path(@leaderboard.leaderboard_id)) do |f| %>
   <h3>Slack information</h3>
   <%= f.label(:channel, "Channel Slack") %>
   #<%= f.text_field(:channel, required: true) %>
@@ -19,4 +19,5 @@
   <div class="actions">
     <%= f.submit('Setup') %>
   </div>
+  <%= button_to "Send test", slack_test_path(@leaderboard.leaderboard_id), method: :post %>
 <% end %>
