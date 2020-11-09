@@ -26,6 +26,13 @@ bundle exec rails server
 bin/webpack-dev-server 
 ```
 
+## Run sidekiq
+
+```
+redis-server
+bundle exec sidekiq
+```
+
 ## Run test suite
 
 ```
