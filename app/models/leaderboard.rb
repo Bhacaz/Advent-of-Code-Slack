@@ -5,7 +5,7 @@ class Leaderboard < ApplicationRecord
   has_many :members
   has_one :post_config
 
-  validates :leaderboard_id, presence: true
+  validates :leaderboard_id, presence: true, uniqueness: true
 
   def fetch_leaderboard_data
     headers = { cookie: "session=#{token}" }
