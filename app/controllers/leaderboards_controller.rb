@@ -9,7 +9,7 @@ class LeaderboardsController < ApplicationController
 
   def create
     @leaderboard = Leaderboard.find_or_initialize_by(leaderboard_params)
-    if @leaderboard.new_record?
+    if @leaderboard.new_record? || @leaderboard.post_config.nil?
       @leaderboard.save!
       redirect_to edit_post_configs_leaderboards_path(@leaderboard.leaderboard_id)
     else
@@ -34,6 +34,12 @@ class LeaderboardsController < ApplicationController
   def show_post_configs
     @leaderboard = Leaderboard.find_by(leaderboard_id: params[:id])
     @post_config = @leaderboard.post_config
+  end
+
+  def slack_test
+    leaderboard = Leaderboard.find_by(leaderboard_id: params[:id])
+    TrySlackPostJob.perform_later(leaderboard.id)
+    redirect_to show_post_configs_leaderboards_path(leaderboard.leaderboard_id)
   end
 
   private

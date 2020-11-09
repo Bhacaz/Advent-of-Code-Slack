@@ -6,4 +6,4 @@
 <p>Display other: <%= @post_config.display_other %></p>
 
 <%= button_to "Edit", edit_post_configs_leaderboards_path(@leaderboard.leaderboard_id), method: :get %>
-<%= button_to "Send test", slack_test_path(@leaderboard.leaderboard_id), method: :post %>
+<%= button_to "Send test", slack_test_leaderboards_path(@leaderboard.leaderboard_id), method: :post %>
