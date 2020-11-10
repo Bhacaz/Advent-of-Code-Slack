@@ -2,8 +2,9 @@
 
 <p>Channel: #<%= @post_config.channel %></p>
 <p>Webhook url: <%= @post_config.webhook_url %></p>
-<p>Order by: <%= @post_config.order_by %></p>
+<p>Order by: <%= @post_config.order_by.capitalize %></p>
 <p>Display other: <%= @post_config.display_other %></p>
 
 <%= button_to "Edit", edit_post_configs_leaderboards_path(@leaderboard.leaderboard_id), method: :get %>
+<%= button_to "Delete", leaderboard_path(@leaderboard.leaderboard_id), method: :delete, data: {confirm: "Are you sure?"} %>
 <%= button_to "Send test", slack_test_leaderboards_path(@leaderboard.leaderboard_id), method: :post %>

@@ -4,11 +4,22 @@ class LeaderboardsController < ApplicationController
     @leaderboard = Leaderboard.new
   end
 
-  def delete
+  def destroy
+    PostConfig.joins(:leaderboard).merge(Leaderboard.where(leaderboard_id: params[:id])).first.destroy!
+    redirect_to new_leaderboard_path
   end
 
   def create
     @leaderboard = Leaderboard.find_or_initialize_by(leaderboard_params)
+
+    begin
+      @leaderboard.fetch_leaderboard_data
+    rescue => e
+      flash[:error] = e.message
+      render :new
+      return
+    end
+
     if @leaderboard.new_record? || @leaderboard.post_config.nil?
       @leaderboard.save!
       redirect_to edit_post_configs_leaderboards_path(@leaderboard.leaderboard_id)

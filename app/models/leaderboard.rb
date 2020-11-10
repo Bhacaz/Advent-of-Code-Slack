@@ -10,7 +10,12 @@ class Leaderboard < ApplicationRecord
   def fetch_leaderboard_data
     headers = { cookie: "session=#{token}" }
     response = HTTParty.get("#{url}.json", headers: headers)
-    JSON.parse(response.body)
+
+    if response.code != 200
+      raise 'Something goes wrong while fetch leaderboard data.'
+    else
+      JSON.parse(response.body)
+    end
     # require_relative '../../spec/support/leaderboard_data_mock'
     # pp LeaderboardDataMock::MOCK
     # JSON.parse(LeaderboardDataMock::MOCK)
