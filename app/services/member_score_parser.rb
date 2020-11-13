@@ -23,7 +23,7 @@ class MemberScoreParser
         member.save!
 
         # TODO: Make it more perfo
-        last_score= member.scores.last&.score
+        last_score = member.scores.last&.score
 
         if last_score != member_data['local_score']
           member.scores.create!(
