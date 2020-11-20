@@ -12,7 +12,7 @@ class Leaderboard < ApplicationRecord
     response = HTTParty.get("#{url}.json", headers: headers)
 
     if response.code != 200
-      raise 'Something goes wrong while fetch leaderboard data.'
+      raise 'Something went wrong while fetching leaderboard data.'
     else
       JSON.parse(response.body)
     end
