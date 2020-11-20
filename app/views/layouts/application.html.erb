@@ -5,12 +5,25 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <h1>Advent of code - Slack</h1>
-    <%= yield %>
+  <section class="hero is-info">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Advent of code - Slack
+        </h1>
+      </div>
+    </div>
+  </section>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

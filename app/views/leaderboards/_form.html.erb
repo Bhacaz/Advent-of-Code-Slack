@@ -11,16 +11,31 @@
     </div>
   <% end %>
 
-  <%= label_tag(:leaderboard_id, "Leaderboard id") %>
-  The ID of your private Leaderboard. It can be found at the end of the url of your Leaderboard
-  https://adventofcode.com/2019/leaderboard/private/view/XXXX<br>
-  <%= text_field_tag(:leaderboard_id, nil, { required: true }) %>
+  <div class="field">
+    <%= label_tag(:leaderboard_id, "Leaderboard id") %>
+    <%= text_field_tag(:leaderboard_id, nil, { required: true, placeholder: 'e.g. 1234567' }) %>
+    <p class="help">
+      The ID of your private Leaderboard. It can be found at the end of the url of your Leaderboard
+      https://adventofcode.com/2019/leaderboard/private/view/<b>XXXX</b>
+    </p>
+  </div>
 
-  <%= label_tag(:token, "Session token") %>
-  A session cookie token from Advent of Code website. It can be find in a request header from the devtool of your browser.<br>
-  <%= password_field_tag(:token, nil, { required: true }) %>
+  <div class="field">
+    <%= label_tag(:token, "Session token") %>
+    <p class="control has-icons-left">
+      <%= password_field_tag(:token, nil, { required: true, placeholder: 'e.g. ****' }) %>
+      <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+    </p>
+    <p class="help">
+      A session cookie token from Advent of Code website. It can be find in a request header from the devtool of your browser.<br>
+    </p>
+  </div>
 
-  <div class="actions">
-    <%= form.submit('Add to Slack') %>
+  <div class="level">
+    <span class="level-item"></span>
+      <%= form.button('Confirm', class: 'is-primary') %>
+    <span class="level-item"></span>
   </div>
 <% end %>

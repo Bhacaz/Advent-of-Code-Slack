@@ -1,22 +1,39 @@
 <%=form_with(model: @post_config, local: true, url: update_post_configs_leaderboards_path(@leaderboard.leaderboard_id)) do |f| %>
-  <h3>Slack information</h3>
-  <%= f.label(:channel, "Channel Slack") %>
-  #<%= f.text_field(:channel, required: true) %>
+  <div class="field">
+    <%= f.label(:channel, "Channel", class: 'label') %>
+    <%= f.text_field(:channel, required: true) %>
+  </div>
 
-  <%= f.label(:webhook_url, "Slack webhook url") %>
-  You can create one here: <%= link_to('my.slack.com', 'https://my.slack.com/services/new/incoming-webhook/') %><br>
-  <%= f.url_field(:webhook_url, { required: true }) %>
+  <div class="field">
+    <%= f.label(:webhook_url, "Webhook url", class: 'label') %>
+    <%= f.url_field(:webhook_url, { required: true }) %>
+    <p class="help">
+      You can create one here: <%= link_to('my.slack.com', 'https://my.slack.com/services/new/incoming-webhook/') %>
+    </p>
+  </div>
 
-  <%= f.label(:order_by, "Order post by:") %>
-  <%= f.label(:stars, "Stars", value: 'stars') %>
-  <%= f.radio_button(:order_by, "stars", required: true) %>
-  <%= f.label(:score, "Score", value: 'score') %>
-  <%= f.radio_button(:order_by, "score") %>
+  <div class="field">
+    <%= f.label(:order_by, "Order by:", class: 'label') %>
+    <label>
+      <%= f.radio_button(:order_by, "stars", required: true) %>
+      Stars
+    </label>
+    <label>
+      <%= f.radio_button(:order_by, "score") %>
+      Score
+    </label>
+  </div>
 
-  <%= f.label(:display_other, "Display other stat") %>
-  <%= f.check_box(:display_other) %>
+  <div class="field">
+    <label class="checkbox">
+      <%= f.check_box(:display_other) %>
+      Display other stats
+    </label>
+  </div>
 
-  <div class="actions">
-    <%= f.submit('Setup') %>
+  <div class="level">
+    <span class="level-item"></span>
+    <%= f.button('Confirm', class: 'is-primary') %>
+    <span class="level-item"></span>
   </div>
 <% end %>

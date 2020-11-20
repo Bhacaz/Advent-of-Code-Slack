@@ -1,10 +1,35 @@
-<h3>Slack information</h3>
+<div class="is-grouped">
+  <div class="field">
+    <label class="label">Channel</label>
+    #<%= @post_config.channel %>
+  </div>
 
-<p>Channel: #<%= @post_config.channel %></p>
-<p>Webhook url: <%= @post_config.webhook_url %></p>
-<p>Order by: <%= @post_config.order_by.capitalize %></p>
-<p>Display other: <%= @post_config.display_other %></p>
+  <div class="field">
+    <label class="label">Webhook url</label>
+    <%= @post_config.webhook_url %>
+  </div>
 
-<%= button_to "Edit", edit_post_configs_leaderboards_path(@leaderboard.leaderboard_id), method: :get %>
-<%= button_to "Delete", leaderboard_path(@leaderboard.leaderboard_id), method: :delete, data: {confirm: "Are you sure?"} %>
-<%= button_to "Send test", slack_test_leaderboards_path(@leaderboard.leaderboard_id), method: :post %>
+  <div class="field">
+    <label class="label">Order by</label>
+    <%= @post_config.order_by.capitalize %>
+  </div>
+
+  <div class="field">
+    <label class="label">Display other</label>
+    <%= @post_config.display_other %>
+  </div>
+</div>
+
+<div class="level">
+  <span class="level-item"></span>
+  <%= button_to edit_post_configs_leaderboards_path(@leaderboard.leaderboard_id), method: :get, class: 'is-primary' do %>
+    Edit
+  <% end %>
+  <%= button_to leaderboard_path(@leaderboard.leaderboard_id), method: :delete, data: { confirm: "Are you sure?" }, class: 'is-danger' do %>
+    Delete
+  <% end %>
+  <%= button_to slack_test_leaderboards_path(@leaderboard.leaderboard_id), method: :post, class: 'is-info' do %>
+    Send test
+  <% end %>
+  <span class="level-item"></span>
+</div>

@@ -1,3 +1,7 @@
 
 <%= render 'form', leaderboard: @leaderboard %>
-<%= flash[:error] %>
+<div class="is-grouped">
+  <p class="has-text-danger">
+    <%= flash[:error] %>
+  </p>
+</div>
