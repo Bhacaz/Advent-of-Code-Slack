@@ -1,4 +1,4 @@
-<%=form_with(model: @post_config, local: true, url: update_post_configs_leaderboards_path(@leaderboard.leaderboard_id)) do |f| %>
+<%=form_with(model: @post_config, local: true, url: update_post_configs_leaderboards_path(@leaderboard)) do |f| %>
   <div class="field">
     <%= f.label(:channel, "Channel", class: 'label') %>
     <%= f.text_field(:channel, required: true) %>

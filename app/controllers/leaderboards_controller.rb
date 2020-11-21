@@ -13,35 +13,34 @@ class LeaderboardsController < ApplicationController
 
     begin
       @leaderboard.fetch_leaderboard_data
-    rescue => e
-      flash[:error] = e.message
+    rescue
+      flash.alert = 'Something went wrong while fetching leaderboard data.'
       render :new
       return
     end
 
     if @leaderboard.new_record? || @leaderboard.post_config.nil?
       @leaderboard.save!
-      redirect_to edit_post_configs_leaderboards_path(@leaderboard.leaderboard_id)
+      redirect_to edit_post_configs_leaderboards_path(@leaderboard)
     else
-      redirect_to show_post_configs_leaderboards_path(@leaderboard.leaderboard_id)
+      redirect_to show_post_configs_leaderboards_path(@leaderboard)
     end
     session[:leaderboard_id] = @leaderboard.id
   end
 
   def destroy
-    PostConfig.joins(:leaderboard).merge(Leaderboard.where(leaderboard_id: params[:id])).first.destroy!
+    PostConfig.joins(:leaderboard).merge(Leaderboard.where(id: params[:id])).first.destroy!
     redirect_to new_leaderboard_path
     session[:leaderboard_id] = nil
   end
 
   def edit_post_configs
-    @leaderboard = Leaderboard.find_by(leaderboard_id: params[:id])
+    @leaderboard = Leaderboard.find(params[:id])
     @post_config = @leaderboard.post_config || PostConfig.new(leaderboard: @leaderboard)
   end
 
   def update_post_configs
-    @leaderboard = Leaderboard.find_by(leaderboard_id: params[:id])
-    post_config = PostConfig.find_or_initialize_by(leaderboard_id: @leaderboard.id)
+    post_config = PostConfig.find_or_initialize_by(leaderboard_id: params[:id])
     post_config.display_other = false unless post_configs_params.key?(:display_other)
     post_config.assign_attributes(post_configs_params)
     post_config.save!
@@ -49,14 +48,14 @@ class LeaderboardsController < ApplicationController
   end
 
   def show_post_configs
-    @leaderboard = Leaderboard.find_by(leaderboard_id: params[:id])
+    @leaderboard = Leaderboard.find(params[:id])
     @post_config = @leaderboard.post_config
   end
 
   def slack_test
-    leaderboard = Leaderboard.find_by(leaderboard_id: params[:id])
+    leaderboard = Leaderboard.find(params[:id])
     TrySlackPostJob.perform_later(leaderboard.id)
-    redirect_to show_post_configs_leaderboards_path(leaderboard.leaderboard_id)
+    redirect_to show_post_configs_leaderboards_path(leaderboard)
   end
 
   private
@@ -70,6 +69,6 @@ class LeaderboardsController < ApplicationController
   end
 
   def check_session
-    redirect_to '/' unless session[:leaderboard_id]
+    redirect_to root_url unless session[:leaderboard_id]
   end
 end

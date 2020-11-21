@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_012537) do
+ActiveRecord::Schema.define(version: 2020_11_21_012603) do
 
   create_table "leaderboards", force: :cascade do |t|
     t.integer "leaderboard_id", null: false
     t.string "token", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["leaderboard_id"], name: "index_leaderboards_on_leaderboard_id"
   end
 
   create_table "member_scores", force: :cascade do |t|

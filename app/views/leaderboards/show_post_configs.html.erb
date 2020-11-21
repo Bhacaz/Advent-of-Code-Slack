@@ -22,13 +22,13 @@
 
 <div class="level">
   <span class="level-item"></span>
-  <%= button_to edit_post_configs_leaderboards_path(@leaderboard.leaderboard_id), method: :get, class: 'is-primary' do %>
+  <%= button_to edit_post_configs_leaderboards_path(@leaderboard), method: :get, class: 'is-primary' do %>
     Edit
   <% end %>
-  <%= button_to leaderboard_path(@leaderboard.leaderboard_id), method: :delete, data: { confirm: "Are you sure?" }, class: 'is-danger' do %>
+  <%= button_to leaderboard_path(@leaderboard), method: :delete, data: { confirm: "Are you sure?" }, class: 'is-danger' do %>
     Delete
   <% end %>
-  <%= button_to slack_test_leaderboards_path(@leaderboard.leaderboard_id), method: :post, class: 'is-info' do %>
+  <%= button_to slack_test_leaderboards_path(@leaderboard), method: :post, class: 'is-info' do %>
     Send test
   <% end %>
   <span class="level-item"></span>
