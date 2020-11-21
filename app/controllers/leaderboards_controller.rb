@@ -1,12 +1,11 @@
+# frozen_string_literal: true
+
 class LeaderboardsController < ApplicationController
+
+  before_action :check_session, except: %i[new create]
 
   def new
     @leaderboard = Leaderboard.new
-  end
-
-  def destroy
-    PostConfig.joins(:leaderboard).merge(Leaderboard.where(leaderboard_id: params[:id])).first.destroy!
-    redirect_to new_leaderboard_path
   end
 
   def create
@@ -26,6 +25,13 @@ class LeaderboardsController < ApplicationController
     else
       redirect_to show_post_configs_leaderboards_path(@leaderboard.leaderboard_id)
     end
+    session[:leaderboard_id] = @leaderboard.id
+  end
+
+  def destroy
+    PostConfig.joins(:leaderboard).merge(Leaderboard.where(leaderboard_id: params[:id])).first.destroy!
+    redirect_to new_leaderboard_path
+    session[:leaderboard_id] = nil
   end
 
   def edit_post_configs
@@ -61,5 +67,9 @@ class LeaderboardsController < ApplicationController
 
   def post_configs_params
     params.required(:post_config).permit(:channel, :webhook_url, :order_by, :display_other)
+  end
+
+  def check_session
+    redirect_to '/' unless session[:leaderboard_id]
   end
 end

@@ -1,6 +1,5 @@
 class Leaderboard < ApplicationRecord
-  # LEADERBOARD_URL = "https://adventofcode.com/#{Date.current.year}/leaderboard/private/view"
-  LEADERBOARD_URL = "https://adventofcode.com/2019/leaderboard/private/view"
+  LEADERBOARD_URL = "https://adventofcode.com/2020/leaderboard/private/view"
 
   has_many :members
   has_one :post_config
