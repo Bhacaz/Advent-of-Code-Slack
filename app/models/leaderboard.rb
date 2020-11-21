@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Leaderboard < ApplicationRecord
-  LEADERBOARD_URL = "https://adventofcode.com/2020/leaderboard/private/view"
+  LEADERBOARD_URL = 'https://adventofcode.com/2020/leaderboard/private/view'
 
   has_many :members
   has_one :post_config
