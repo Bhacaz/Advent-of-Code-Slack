@@ -3,8 +3,8 @@
 class Leaderboard < ApplicationRecord
   LEADERBOARD_URL = 'https://adventofcode.com/2020/leaderboard/private/view'
 
-  has_many :members
-  has_one :post_config
+  has_many :members, dependent: :destroy 
+  has_one :post_config, dependent: :destroy
 
   validates :leaderboard_id, presence: true
 
