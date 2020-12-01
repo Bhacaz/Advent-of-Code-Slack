@@ -56,10 +56,12 @@ class BuildSlackPost
   end
 
   def add_emoji(row, add_tada, add_wave)
-    if add_tada || add_wave
-      emoji = add_tada ? '🎉' : '👋'
-      row = "*#{row} #{emoji}*"
+    if add_wave
+       "*#{row} 👋*"
+    elsif add_tada
+      "*#{row} 🎉*"
+    else
+      row
     end
-    row
   end
 end
