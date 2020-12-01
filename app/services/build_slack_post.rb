@@ -37,8 +37,7 @@ class BuildSlackPost
                   else
                     ''
                   end
-    link = "<#{@leaderboard.url}|*Leaderboard*>"
-    "*#{first_part}#{second_part}#{link}*"
+    "*#{first_part}#{second_part}#{link(@leaderboard.url)}*"
   end
 
   private
@@ -63,5 +62,11 @@ class BuildSlackPost
     else
       row
     end
+  end
+
+  def link(leaderboard_url)
+    ordering = +'?order='
+    ordering << (by_stars? ? 'stars' : 'local_score')
+    "<#{leaderboard_url}#{ordering}|*Leaderboard*>"
   end
 end
