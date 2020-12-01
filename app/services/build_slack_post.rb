@@ -14,7 +14,7 @@ class BuildSlackPost
     @display_other = @leaderboard.post_config.display_other
   end
 
-  def build_post_message(score_change_members = [], new_members = [])
+  def build_post_message(stars_change_members = [], new_members = [])
     score_rows = @leaderboard.last_scores.order(ordering).map do |score|
       first_part = (by_stars? ? score.stars : score.score).to_s.ljust(12, "\u2007")
       second_part = if @display_other
@@ -24,7 +24,7 @@ class BuildSlackPost
                     end
       row = "#{first_part}#{second_part}#{score.member.name}"
       add_emoji(row,
-                score_change_members.include?(score.member),
+                stars_change_members.include?(score.member),
                 new_members.include?(score.member))
     end
     "#{header}\n#{score_rows.join("\n")}"

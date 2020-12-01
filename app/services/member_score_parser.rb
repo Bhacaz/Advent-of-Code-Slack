@@ -1,10 +1,10 @@
 class MemberScoreParser
-  attr_reader :new_members, :score_change_members
+  attr_reader :new_members, :stars_change_members
 
   def initialize(leaderboard)
     @leaderboard = leaderboard
     @new_members = []
-    @score_change_members = []
+    @stars_change_members = []
   end
 
   def parse
@@ -23,20 +23,20 @@ class MemberScoreParser
         member.save!
 
         # TODO: Make it more perfo
-        last_score = member.scores.last&.score
+        last_stars = member.scores.last&.stars
 
-        if last_score != member_data['local_score']
+        if last_stars != member_data['stars']
           member.scores.create!(
             stars: member_data['stars'],
             score: member_data['local_score']
           )
-          @score_change_members << member
+          @stars_change_members << member
         end
       end
     end
   end
 
   def nothing_new?
-    @new_members.empty? && @score_change_members.empty?
+    @new_members.empty? && @stars_change_members.empty?
   end
 end

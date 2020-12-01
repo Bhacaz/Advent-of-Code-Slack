@@ -10,7 +10,7 @@ class BotJob < ApplicationJob
 
     slack_message = BuildSlackPost
                       .new(leaderboard)
-                      .build_post_message(parser.score_change_members, parser.new_members)
+                      .build_post_message(parser.stars_change_members, parser.new_members)
 
     SlackJob.perform_later(leaderboard_id, slack_message)
   end
