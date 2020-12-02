@@ -33,10 +33,19 @@ class MemberScoreParser
           @stars_change_members << member
         end
       end
+
+      remove_leaved_members(data['members'].keys.map(&:to_i))
     end
   end
 
   def nothing_new?
     @new_members.empty? && @stars_change_members.empty?
+  end
+
+  def remove_leaved_members(remote_member_ids)
+    to_remove_member_ids = @leaderboard.members.pluck(:member_id) - remote_member_ids
+    if to_remove_member_ids.any?
+      @leaderboard.members.where(member_id: to_remove_member_ids).destroy_all
+    end
   end
 end
