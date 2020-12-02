@@ -1,4 +1,4 @@
-# Advent of Code Slack
+# [Advent of Code Slack](https://advent.bhacaz.com/)
 
 Post new Advent of Code score of a private leaderboard on Slack.
 
