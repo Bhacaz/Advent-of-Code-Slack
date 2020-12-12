@@ -9,10 +9,12 @@ class LeaderboardsController < ApplicationController
   end
 
   def create
-    @leaderboard = Leaderboard.find_or_initialize_by(leaderboard_params)
+    @leaderboard = Leaderboard.find_or_initialize_by(leaderboard_id: leaderboard_params[:leaderboard_id])
+    @leaderboard.token = leaderboard_params[:token]
 
     begin
       @leaderboard.fetch_leaderboard_data
+      @leaderboard.save!
     rescue
       flash.alert = 'Something went wrong while fetching leaderboard data.'
       render :new
