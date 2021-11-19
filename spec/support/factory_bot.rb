@@ -6,6 +6,14 @@ FactoryBot.define do
     token { 'abc' }
   end
 
+  factory :post_config do
+    leaderboard
+    channel { Faker::Name.name }
+    webhook_url { Faker::Internet.url }
+    order_by { :stars }
+    display_other { true }
+  end
+
   factory :member do
     leaderboard
     member_id { Faker::Number.number(digits: 10) }
