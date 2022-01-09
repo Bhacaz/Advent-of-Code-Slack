@@ -33,6 +33,12 @@ redis-server
 bundle exec sidekiq
 ```
 
+## Run cron job
+
+```sh
+$ bundle exec rails runner "AdventSlackBotJob.perform_later"
+```
+
 ## Run test suite
 
 ```
