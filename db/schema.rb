@@ -2,8 +2,8 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_11_21_012603) do
   end
 
   create_table "member_scores", force: :cascade do |t|
-    t.integer "member_id"
+    t.bigint "member_id"
     t.integer "stars"
     t.integer "score"
     t.datetime "created_at", precision: 6, null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_11_21_012603) do
   end
 
   create_table "members", force: :cascade do |t|
-    t.integer "leaderboard_id"
+    t.bigint "leaderboard_id"
     t.integer "member_id"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_11_21_012603) do
   end
 
   create_table "post_configs", force: :cascade do |t|
-    t.integer "leaderboard_id"
+    t.bigint "leaderboard_id"
     t.string "channel", null: false
     t.string "webhook_url", null: false
     t.integer "order_by", null: false
