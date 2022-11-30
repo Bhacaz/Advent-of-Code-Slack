@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_21_012603) do
+ActiveRecord::Schema.define(version: 2022_11_30_143830) do
 
   create_table "leaderboards", force: :cascade do |t|
     t.integer "leaderboard_id", null: false
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_11_21_012603) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["leaderboard_id", "member_id"], name: "index_members_on_leaderboard_id_and_member_id", unique: true
     t.index ["leaderboard_id"], name: "index_members_on_leaderboard_id"
   end
 
