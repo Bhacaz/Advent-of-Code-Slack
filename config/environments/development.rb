@@ -61,7 +61,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   # require 'sidekiq/testing'
   # Sidekiq::Testing.inline!
+  require 'sidekiq/web'
+  require 'sidekiq/cron/web'
 end
-
-require 'sidekiq/web'
-require 'sidekiq/cron/web'

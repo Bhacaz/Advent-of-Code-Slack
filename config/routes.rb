@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   match 'leaderboards/:id/post_configs' => 'leaderboards#update_post_configs', as: :update_post_configs_leaderboards, via: [:patch, :post]
   post 'leaderboards/:id/slack_test' => 'leaderboards#slack_test', as: :slack_test_leaderboards
 
-  mount Sidekiq::Web => '/sidekiq'
+  mount Sidekiq::Web => '/sidekiq' if defined? Sidekiq::Web
 end
