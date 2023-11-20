@@ -14,18 +14,7 @@
  *= require_self
  */
 
-@import "bulma";
-
-input[type=text], input[type=password], input[type=url] {
-  @extend .input;
-}
-
-button {
-  @extend .button;
-  min-width: 8em;
-  margin-left: 1em;
-  margin-right: 1em;
-}
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 
 .level {
   padding-top:2em
