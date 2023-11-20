@@ -15,29 +15,20 @@ bundle install
 ## Init database
 
 ```
-bundle exec rails db:create
-bundle exec rails db:migrate
+bin/rails db:setup
 ```
 
 ## Run the server
 
 ```
-bundle exec rails server
-bin/webpack-dev-server 
+bin/rails server
 ```
 
-## Run sidekiq
+## Sidekiq and Cron bot
 
-```
-redis-server
-bundle exec sidekiq
-```
-
-## Run cron job
-
-```sh
-$ bundle exec rails runner "AdventSlackBotJob.perform_later"
-```
+Sidekiq is configured to be embedded with puma.
+The cron to publish change in the leaderboard is configured every 15 minutes.
+see `config/schedule.yml`.
 
 ## Run test suite
 
