@@ -62,3 +62,6 @@ Rails.application.configure do
   # require 'sidekiq/testing'
   # Sidekiq::Testing.inline!
 end
+
+require 'sidekiq/web'
+require 'sidekiq/cron/web'

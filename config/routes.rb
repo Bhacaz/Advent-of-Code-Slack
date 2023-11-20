@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get 'leaderboards/:id/post_configs/edit' => 'leaderboards#edit_post_configs', as: :edit_post_configs_leaderboards
   match 'leaderboards/:id/post_configs' => 'leaderboards#update_post_configs', as: :update_post_configs_leaderboards, via: [:patch, :post]
   post 'leaderboards/:id/slack_test' => 'leaderboards#slack_test', as: :slack_test_leaderboards
+
+  mount Sidekiq::Web => '/sidekiq'
 end

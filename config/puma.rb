@@ -7,6 +7,7 @@
 max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
 min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
 threads min_threads_count, max_threads_count
+workers ENV.fetch("WEB_CONCURRENCY") { 1 }
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
@@ -36,3 +37,17 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
+
+x = nil
+on_worker_boot do
+  x = Sidekiq.configure_embed do |config|
+    # config.logger.level = Logger::DEBUG
+    config.queues = %w[critical default low]
+    config.concurrency = 2
+  end
+  x.run
+end
+
+on_worker_shutdown do
+  x&.stop
+end

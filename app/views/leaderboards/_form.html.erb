@@ -15,7 +15,7 @@
     <%= text_field_tag(:leaderboard_id, nil, { required: true, placeholder: 'e.g. 1234567', class: 'input' }) %>
     <p class="help">
       The ID of your private Leaderboard. It can be found at the end of the url of your Leaderboard
-      https://adventofcode.com/2021/leaderboard/private/view/<b>XXXX</b>
+      https://adventofcode.com/<%= Date.current.year %>/leaderboard/private/view/<b>XXXX</b>
     </p>
   </div>
 

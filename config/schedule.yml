@@ -1,0 +1,3 @@
+advent_slack_bot:
+  cron: "*/15 * * * *" # every 15 minutes
+  class: "AdventSlackBotJob"
