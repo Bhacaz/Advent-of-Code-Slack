@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   resources :leaderboards, only: %i[create new destroy]
   get 'leaderboards/:id/post_configs' => 'leaderboards#show_post_configs', as: :show_post_configs_leaderboards
   get 'leaderboards/:id/post_configs/edit' => 'leaderboards#edit_post_configs', as: :edit_post_configs_leaderboards
-  match 'leaderboards/:id/post_configs' => 'leaderboards#update_post_configs', as: :post_config, via: [:patch, :post]
+  post 'leaderboards/:id/post_configs' => 'leaderboards#update_post_configs', as: :post_configs
+  patch 'leaderboards/:id/post_configs' => 'leaderboards#update_post_configs', as: :post_config
   post 'leaderboards/:id/slack_test' => 'leaderboards#slack_test', as: :slack_test_leaderboards
 
 
