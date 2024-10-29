@@ -1,0 +1,15 @@
+<% if flash.any? %>
+  <div class="toast">
+    <% if flash.alert %>
+      <div class="alert alert-warning">
+        <i class="bi bi-exclamation-triangle"></i>
+        <span><%= flash.alert %></span>
+      </div>
+    <% elsif flash.notice %>
+      <div class="alert alert-info">
+        <i class="bi bi-chat"></i>
+        <span><%= flash.notice %></span>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -40,6 +40,8 @@ gem 'ar_lazy_preload'
 
 gem 'solid_queue_dashboard'
 
+gem 'httparty'
+
 group :production do
   # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
   gem 'thruster'

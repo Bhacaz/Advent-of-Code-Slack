@@ -1,0 +1,37 @@
+
+<%= form_with(model: @leaderboard) do |form| %>
+  <div class="p-8 rounded-lg bg-slate-800">
+    <div class="pb-4">
+      <%= label_tag(:leaderboard_id, class: 'form-control pb-2') do %>
+        <div class="label">
+          <span class="label-text">Leaderboard ID</span>
+          <span class="label-text-alt">
+            <div class="tooltip before:bg-slate-500 before:max-w-min"
+                 data-tip="The ID of your private Leaderboard. It can be found at the end of the url of your Leaderboard https://adventofcode.com/<%= Date.current.year %>/leaderboard/private/view/123456">
+              <div class="badge badge-secondary badge-outline py-3 ms-2">?</div>
+            </div>
+          </span>
+
+        </div>
+        <%= text_field_tag(:leaderboard_id, nil, { required: true, placeholder: '1234567', class: 'input input-bordered flex' }) %>
+      <% end %>
+
+      <%= label_tag(:token, "Session token", class: 'form-control') do %>
+        <div class="label">
+          <span class="label-text">Session token</span>
+          <span class="label-text-alt">
+            <div class="tooltip before:bg-slate-500"
+                 data-tip="A session cookie token from Advent of Code website. It can be found in a request header from the devtool of your browser.">
+              <div class="badge badge-secondary badge-outline py-3 ms-2">?</div>
+            </div>
+          </span>
+        </div>
+        <%= password_field_tag(:token, nil, { required: true, placeholder: '****', class: 'input input-bordered flex' }) %>
+      <% end %>
+    </div>
+
+    <div class="full-width pt-4">
+      <%= form.submit('Login', class: 'btn btn-primary w-full') %>
+    </div>
+  </div>
+<% end %>

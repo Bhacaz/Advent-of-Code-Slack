@@ -1,0 +1,38 @@
+<div class="pt-12 flex justify-center">
+  <%= form_with(model: @post_config, class: 'w-1/2') do |f| %>
+    <div class="flex flex-col space-y-6">
+      <%= f.label(:channel, "Channel", class: 'form-control') do %>
+        <span class="label-text">Channel</span>
+        <%= f.text_field(:channel, required: true, class: 'input input-bordered') %>
+      <% end %>
+
+      <%= f.label(:webhook_url, "Webhook url", class: 'form-control') do %>
+        <span class="label-text">Webhook url</span>
+        <%= f.url_field(:webhook_url, required: true, class: 'input input-bordered') %>
+        <p class="help">
+          You can create one
+          here: <%= link_to('my.slack.com', 'https://my.slack.com/services/new/incoming-webhook/', class: 'link') %>
+        </p>
+      <% end %>
+
+      <%= f.label(:order_by, "Order by:", class: 'form-control') do %>
+        <span class="label-text">Order by</span>
+        <label class="flex rounded-md py-1 cursor-pointer hover:bg-slate-800">
+          <%= f.radio_button(:order_by, "stars", required: true, class: 'my-auto') %>
+          <i class="pl-2">Stars</i>
+        </label>
+        <label class="flex rounded-md py-1 cursor-pointer hover:bg-slate-800">
+          <%= f.radio_button(:order_by, "score", class: 'my-auto') %>
+          <i class="pl-2">Score</i>
+        </label>
+      <% end %>
+
+      <%= f.label(:display_other, class: 'form-control') do %>
+        <label class="label-text">Display other stats</label>
+        <%= f.check_box(:display_other, class: 'checkbox') %>
+      <% end %>
+
+      <%= f.button('Confirm', class: 'btn btn-primary') %>
+    </div>
+  <% end %>
+</div>
