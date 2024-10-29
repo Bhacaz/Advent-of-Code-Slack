@@ -1,29 +1,29 @@
-<div class="is-grouped">
-  <div class="field">
-    <label class="label">Channel</label>
-    <%= @post_config.channel %>
-  </div>
+<div class="pt-12 flex justify-center">
+  <div class="w-1/2 flex flex-col space-y-4">
+      <div class="field">
+        <label class="label text-slate-500">Channel</label>
+        <p class="ps-1"><%= @post_config.channel %></p>
+      </div>
 
-  <div class="field">
-    <label class="label">Webhook url</label>
-    <%= @post_config.webhook_url %>
-  </div>
+      <div class="field">
+        <label class="label text-slate-500">Webhook url</label>
+        <p class="ps-1"><%= link_to 'hooks.slack.com', @post_config.webhook_url, class: 'link' %></p>
+      </div>
 
-  <div class="field">
-    <label class="label">Order by</label>
-    <%= @post_config.order_by.capitalize %>
-  </div>
+      <div class="field">
+        <label class="label text-slate-500">Order by</label>
+        <p class="ps-1"><%= @post_config.order_by.capitalize %></p>
+      </div>
 
-  <div class="field">
-    <label class="label">Display other</label>
-    <%= @post_config.display_other %>
-  </div>
-</div>
+      <div class="field">
+        <label class="label text-slate-500">Display other</label>
+        <p class="ps-1"><%= @post_config.display_other %></p>
+      </div>
 
-<div class="level">
-  <span class="level-item"></span>
-    <%= button_to 'Edit', edit_post_configs_leaderboards_path(@leaderboard), method: :get, class: 'button is-primary mx-2' %>
-    <%= button_to 'Delete', leaderboard_path(@leaderboard), method: :delete, data: { confirm: "Are you sure?" }, class: 'button is-danger mx-2' %>
-    <%= button_to 'Send test', slack_test_leaderboards_path(@leaderboard), method: :post, class: 'button is-info mx-2' %>
-  <span class="level-item"></span>
+    <div class="pt-4 flex flex-row space-x-4 justify-around">
+      <%= button_to 'Edit', edit_post_configs_leaderboards_path(@leaderboard), method: :get, class: 'btn btn-primary w-32' %>
+      <%= button_to 'Send test', slack_test_leaderboards_path(@leaderboard), method: :post, class: 'btn btn-accent w-32' %>
+      <%= button_to 'Delete', leaderboard_path(@leaderboard), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-error w-32' %>
+    </div>
+  </div>
 </div>

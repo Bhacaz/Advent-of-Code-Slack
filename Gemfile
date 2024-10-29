@@ -1,55 +1,77 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.2.2'
+# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem 'rails', '~> 8.0.0.rc1'
+# The modern asset pipeline for Rails [https://github.com/rails/propshaft]
+gem 'propshaft'
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3', '>= 2.1'
+# Use the Puma web server [https://github.com/puma/puma]
+gem 'puma', '>= 5.0'
+# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+gem 'importmap-rails'
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem 'turbo-rails'
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem 'stimulus-rails'
+# Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
+gem 'tailwindcss-rails'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.1.0'
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+# gem "bcrypt", "~> 3.1.7"
 
-# Use Puma as the app server
-gem 'puma', '~> 5.5.0'
-# Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: %i[windows jruby]
 
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+# Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
+gem 'solid_cable'
+gem 'solid_cache'
+gem 'solid_queue'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
-gem 'sidekiq'
+gem 'bootsnap', require: false
+
+# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
+# gem "image_processing", "~> 1.2"
+
+gem 'ar_lazy_preload'
+
+gem 'solid_queue_dashboard'
+
 gem 'httparty'
-gem 'sqlite3', '~> 1.4'
+
+group :production do
+  # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
+  gem 'thruster'
+end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
+
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem 'brakeman', require: false
+
+  gem 'hotwire-livereload'
+
+  gem 'rubocop', require: false
+  gem 'rubocop-erb', require: false
+  gem 'rubocop-factory_bot', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', require: false
 end
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '~> 3.2'
+  # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'web-console'
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'rspec-rails'
   gem 'factory_bot_rails'
-  gem 'webmock'
   gem 'faker'
+  gem 'rspec-rails'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem "sidekiq-cron", "~> 1.11"

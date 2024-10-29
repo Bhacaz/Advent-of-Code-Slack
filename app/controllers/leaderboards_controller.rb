@@ -9,15 +9,15 @@ class LeaderboardsController < ApplicationController
   end
 
   def create
-    @leaderboard = Leaderboard.find_or_initialize_by(leaderboard_id: leaderboard_params[:leaderboard_id])
-    @leaderboard.token = leaderboard_params[:token]
+    @leaderboard = Leaderboard.find_or_initialize_by(leaderboard_id: params[:leaderboard_id])
+    @leaderboard.token = params[:token]
 
     begin
       @leaderboard.fetch_leaderboard_data
       @leaderboard.save!
     rescue
-      flash.alert = 'Something went wrong while fetching leaderboard data.'
-      render :new
+      flash.now[:alert] = 'Something went wrong while fetching leaderboard data.'
+      render turbo_stream: turbo_stream.replace('flash', partial: 'flash')
       return
     end
 
@@ -57,14 +57,10 @@ class LeaderboardsController < ApplicationController
   def slack_test
     leaderboard = Leaderboard.find(params[:id])
     TrySlackPostJob.perform_later(leaderboard.id)
-    redirect_to show_post_configs_leaderboards_path(leaderboard)
+    redirect_to show_post_configs_leaderboards_path(leaderboard), notice: 'Slack message sent!'
   end
 
   private
-
-  def leaderboard_params
-    params.permit(:leaderboard_id, :token)
-  end
 
   def post_configs_params
     params.required(:post_config).permit(:channel, :webhook_url, :order_by, :display_other)

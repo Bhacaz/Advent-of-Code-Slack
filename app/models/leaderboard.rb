@@ -3,6 +3,8 @@
 class Leaderboard < ApplicationRecord
   LEADERBOARD_URL = "https://adventofcode.com/#{Date.current.year}/leaderboard/private/view"
 
+  encrypts :token
+
   has_many :members, dependent: :destroy 
   has_one :post_config, dependent: :destroy
 

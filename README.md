@@ -1,37 +1,26 @@
-# [Advent of Code Slack](https://advent.bhacaz.com/)
+# Rails Template App
 
-Post new Advent of Code score of a private leaderboard on Slack.
+## Usage
 
-![Slack post](https://user-images.githubusercontent.com/7858787/70275316-ea725880-177b-11ea-88c3-f27eec8afd19.png)
-
-## Installation
-
-```
-rbenv install 2.7.2
-gem install bundler
+```bash
+curl -sL https://github.com/Bhacaz/rails_template_app/archive/main.tar.gz | tar xz
+mv rails_template_app-main my_awesome_app
+cd my_awesome_app
 bundle install
+bin/rails generate rename MyAwesomeApp
+bin/setup
 ```
 
-## Init database
+## Features
 
-```
-bin/rails db:setup
-```
-
-## Run the server
-
-```
-bin/rails server
-```
-
-## Sidekiq and Cron bot
-
-Sidekiq is configured to be embedded with puma.
-The cron to publish change in the leaderboard is configured every 15 minutes.
-see `config/schedule.yml`.
-
-## Run test suite
-
-```
-bundle exec rspec
-```
+* Rails 8.0.0.beta1
+* TailwindCSS + [Daisyui](https://gist.github.com/Bhacaz/db7124f379857c94d62c1c32f19d07de)
+* Hotwire
+  * turbo_power
+  * hotwire-livereload
+* RSpec
+  * FactoryBot
+  * Faker
+* SolidQueue
+  * Setup in dev
+  * mission_control-jobs
