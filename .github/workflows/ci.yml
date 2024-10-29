@@ -73,7 +73,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    if: ${{ always() && contains(join(needs.*.result, ','), 'success') }}
+    if: ${{ always() && contains(join(needs.*.result, ','), 'success') && github.ref == 'refs/heads/main' }}
     needs: [test, lint, scan_ruby, scan_js]
     permissions:
       contents: read
