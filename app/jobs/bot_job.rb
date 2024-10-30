@@ -9,10 +9,9 @@ class BotJob < ApplicationJob
     return if parser.nothing_new?
 
     slack_message = BuildSlackPost
-                      .new(leaderboard)
-                      .build_post_message(parser.stars_change_members, parser.new_members)
+                    .new(leaderboard)
+                    .build_post_message(parser.stars_change_members, parser.new_members)
 
     SlackJob.perform_later(leaderboard_id, slack_message)
   end
 end
-

@@ -15,14 +15,14 @@
         </p>
       <% end %>
 
-      <%= f.label(:order_by, "Order by:", class: 'form-control') do %>
+      <%= f.label(:order_by, 'Order by:', class: 'form-control') do %>
         <span class="label-text">Order by</span>
         <label class="flex rounded-md py-1 cursor-pointer hover:bg-slate-800">
-          <%= f.radio_button(:order_by, "stars", required: true, checked: true, class: 'my-auto') %>
+          <%= f.radio_button(:order_by, 'stars', required: true, checked: true, class: 'my-auto') %>
           <i class="pl-2">Stars</i>
         </label>
         <label class="flex rounded-md py-1 cursor-pointer hover:bg-slate-800">
-          <%= f.radio_button(:order_by, "score", class: 'my-auto') %>
+          <%= f.radio_button(:order_by, 'score', class: 'my-auto') %>
           <i class="pl-2">Score</i>
         </label>
       <% end %>

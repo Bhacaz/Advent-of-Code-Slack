@@ -23,7 +23,7 @@
     <div class="pt-4 flex flex-row space-x-4 justify-around">
       <%= button_to 'Edit', edit_post_configs_leaderboards_path(@leaderboard), method: :get, class: 'btn btn-primary w-32' %>
       <%= button_to 'Send test', slack_test_leaderboards_path(@leaderboard), method: :post, class: 'btn btn-accent w-32' %>
-      <%= button_to 'Delete', leaderboard_path(@leaderboard), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-error w-32' %>
+      <%= button_to 'Delete', leaderboard_path(@leaderboard), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-error w-32' %>
     </div>
   </div>
 </div>

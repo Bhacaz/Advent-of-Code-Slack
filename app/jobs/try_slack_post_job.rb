@@ -7,10 +7,9 @@ class TrySlackPostJob < ApplicationJob
     parser.parse
 
     slack_message = BuildSlackPost
-                      .new(leaderboard)
-                      .build_post_message
+                    .new(leaderboard)
+                    .build_post_message
 
     SlackJob.perform_later(leaderboard_id, slack_message)
   end
 end
-

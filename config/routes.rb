@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   patch 'leaderboards/:id/post_configs' => 'leaderboards#update_post_configs', as: :post_config
   post 'leaderboards/:id/slack_test' => 'leaderboards#slack_test', as: :slack_test_leaderboards
 
-
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get 'up' => 'rails/health#show', as: :rails_health_check

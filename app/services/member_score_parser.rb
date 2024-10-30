@@ -25,13 +25,13 @@ class MemberScoreParser
         # TODO: Make it more perfo
         last_stars = member.scores.last&.stars
 
-        if last_stars != member_data['stars']
-          member.scores.create!(
-            stars: member_data['stars'],
-            score: member_data['local_score']
-          )
-          @stars_change_members << member
-        end
+        next unless last_stars != member_data['stars']
+
+        member.scores.create!(
+          stars: member_data['stars'],
+          score: member_data['local_score']
+        )
+        @stars_change_members << member
       end
 
       remove_leaved_members(data['members'].keys.map(&:to_i))
@@ -44,8 +44,8 @@ class MemberScoreParser
 
   def remove_leaved_members(remote_member_ids)
     to_remove_member_ids = @leaderboard.members.pluck(:member_id) - remote_member_ids
-    if to_remove_member_ids.any?
-      @leaderboard.members.where(member_id: to_remove_member_ids).destroy_all
-    end
+    return unless to_remove_member_ids.any?
+
+    @leaderboard.members.where(member_id: to_remove_member_ids).destroy_all
   end
 end

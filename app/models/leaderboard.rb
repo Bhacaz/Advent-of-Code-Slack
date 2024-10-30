@@ -5,7 +5,7 @@ class Leaderboard < ApplicationRecord
 
   encrypts :token
 
-  has_many :members, dependent: :destroy 
+  has_many :members, dependent: :destroy
   has_one :post_config, dependent: :destroy
 
   validates :leaderboard_id, presence: true
@@ -14,11 +14,10 @@ class Leaderboard < ApplicationRecord
     headers = { cookie: "session=#{token}" }
     response = HTTParty.get("#{url}.json", headers: headers)
 
-    if response.code != 200
-      raise 'Something went wrong while fetching leaderboard data.'
-    else
-      JSON.parse(response.body)
-    end
+    raise 'Something went wrong while fetching leaderboard data.' if response.code != 200
+
+    JSON.parse(response.body)
+
     # require_relative '../../spec/support/leaderboard_data_mock'
     # pp LeaderboardDataMock::MOCK
     # JSON.parse(LeaderboardDataMock::MOCK)

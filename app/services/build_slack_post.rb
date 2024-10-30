@@ -1,5 +1,4 @@
 class BuildSlackPost
-
   ORDER_BY_STARS = { stars: :desc, score: :desc, created_at: :asc }
   ORDER_BY_SCORE = { score: :desc, stars: :desc, created_at: :asc }
   START_HEADER = 'Stars ⭐'
@@ -18,7 +17,7 @@ class BuildSlackPost
     score_rows = @leaderboard.last_scores.order(ordering).map do |score|
       first_part = (by_stars? ? score.stars : score.score).to_s.ljust(12, "\u2007")
       second_part = if @display_other
-                      (!by_stars? ? score.stars : score.score).to_s.ljust(12, "\u2007")
+                      (by_stars? ? score.score : score.stars).to_s.ljust(12, "\u2007")
                     else
                       ''
                     end
@@ -33,7 +32,7 @@ class BuildSlackPost
   def header
     first_part = (by_stars? ? START_HEADER : SCORE_HEADER).ljust(12, "\u2007")
     second_part = if @display_other
-                    (!by_stars? ? START_HEADER : SCORE_HEADER).ljust(12, "\u2007")
+                    (by_stars? ? SCORE_HEADER : START_HEADER).ljust(12, "\u2007")
                   else
                     ''
                   end
@@ -41,7 +40,7 @@ class BuildSlackPost
   end
 
   private
-  
+
   def by_stars?
     @ordering_by == 'stars'
   end
@@ -56,7 +55,7 @@ class BuildSlackPost
 
   def add_emoji(row, add_tada, add_wave)
     if add_wave
-       "*#{row} 👋*"
+      "*#{row} 👋*"
     elsif add_tada
       "*#{row} 🎉*"
     else

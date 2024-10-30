@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class LeaderboardsController < ApplicationController
-
   before_action :check_session, except: %i[new create]
 
   def new
@@ -15,7 +14,7 @@ class LeaderboardsController < ApplicationController
     begin
       @leaderboard.fetch_leaderboard_data
       @leaderboard.save!
-    rescue
+    rescue StandardError
       flash.now[:alert] = 'Something went wrong while fetching leaderboard data.'
       render turbo_stream: turbo_stream.replace('flash', partial: 'flash')
       return
