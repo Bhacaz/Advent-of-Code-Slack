@@ -30,14 +30,8 @@
 
 /public/assets
 
-# Ignore master key for decrypting credentials and more.
-/config/master.key
-
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
+# Ignore master key production for decrypting credentials and more.
 /config/credentials/production.key
-
-/config/credentials/development.key
-
-/config/credentials/test.key
