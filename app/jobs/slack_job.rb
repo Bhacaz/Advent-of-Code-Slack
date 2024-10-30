@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SlackJob < ApplicationJob
   ICON = 'https://minapecheux.com/wp/wp-content/uploads/2019/12/advent_of_code-icon2.png'
   queue_as :default

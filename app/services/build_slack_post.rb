@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BuildSlackPost
   ORDER_BY_STARS = { stars: :desc, score: :desc, created_at: :asc }
   ORDER_BY_SCORE = { score: :desc, stars: :desc, created_at: :asc }

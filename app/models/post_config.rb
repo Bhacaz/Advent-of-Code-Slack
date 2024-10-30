@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostConfig < ApplicationRecord
   belongs_to :leaderboard
 

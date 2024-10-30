@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LeaderboardDataMock
   MOCK = { 'members' =>
             { '12341' =>

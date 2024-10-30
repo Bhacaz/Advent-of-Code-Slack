@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Leaderboard do
   describe '#last_scores' do
     subject { leaderboard.last_scores }

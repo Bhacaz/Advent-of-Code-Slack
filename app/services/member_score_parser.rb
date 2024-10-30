@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MemberScoreParser
   attr_reader :new_members, :stars_change_members
 

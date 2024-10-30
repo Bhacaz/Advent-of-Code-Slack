@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AdventSlackBotJob < ApplicationJob
   queue_as :default
 
