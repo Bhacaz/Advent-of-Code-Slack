@@ -53,6 +53,22 @@ RSpec.describe MemberScoreParser do
           expect(instance.stars_change_members.size).to eq 5
         end
       end
+
+      context 'when a member still have the same number of stars but the score change' do
+        it 'doenst not create a new member_score' do
+          already_created_member = create(:member, member_id: 12_340, leaderboard: leaderboard, name: nil)
+          create(:member_score, member: already_created_member, score: 100, stars: 19)
+          expect(already_created_member.scores.count).to eq 1
+          expect(already_created_member.scores.first.stars).to eq 19
+          expect(already_created_member.scores.first.score).to eq 100
+          subject
+          already_created_member.reload
+          expect(already_created_member.scores.count).to eq 1
+          expect(already_created_member.scores.first.stars).to eq 19
+          expect(already_created_member.scores.first.score).to eq 101
+          expect(instance.stars_change_members.size).to eq 5
+        end
+      end
     end
   end
 

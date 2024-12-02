@@ -25,9 +25,12 @@ class MemberScoreParser
         member.save!
 
         # TODO: Make it more perfo
-        last_stars = member.scores.last&.stars
+        score_record = member.scores.last
 
-        next unless last_stars != member_data['stars']
+        if score_record && score_record.stars == member_data['stars']
+          score_record.update!(score: member_data['local_score']) if score_record.score != member_data['local_score']
+          next
+        end
 
         member.scores.create!(
           stars: member_data['stars'],
